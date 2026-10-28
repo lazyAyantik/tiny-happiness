@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Little Box of Happiness ♡</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      color: #75465b;
+      background: linear-gradient(
+        135deg, #fff1f5, #f9e8ff, #fff7e8
+      );
+      overflow-x: hidden;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 480px;
+      padding: 38px 26px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid white;
+      border-radius: 28px;
+      box-shadow: 0 16px 50px #b9789b24;
+      animation: appear 0.8s ease both;
+    }
+
+    .heart {
+      font-size: 54px;
+      display: inline-block;
+      animation: heartbeat 1.8s infinite;
+    }
+
+    h1 {
+      font-size: clamp(27px, 6vw, 36px);
+      margin: 16px 0 12px;
+      color: #b65783;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #8e6c7c;
+      margin-bottom: 28px;
+    }
+
+    button {
+      border: none;
+      padding: 15px 24px;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #f2a5c5, #dba7f5);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 6px 18px #dba7f544;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px #dba7f566;
+    }
+
+    button:active {
+      transform: scale(0.96);
+    }
+
+    button:focus-visible {
+      outline: 3px solid #a54b7c;
+      outline-offset: 4px;
+    }
+
+    .message-box {
+      min-height: 125px;
+      margin-top: 28px;
+      padding: 22px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      background: #fff5f8;
+      border: 1px dashed #edbed2;
+      border-radius: 20px;
+      transition: background 0.3s;
+    }
+
+    #message {
+      font-size: 17px;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    #emoji {
+      font-size: 29px;
+    }
+
+    .hint {
+      font-size: 12px;
+      color: #aa8a99;
+      margin-top: 22px;
+    }
+
+    .sparkle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 5;
+      animation: float-up 1.5s ease-out forwards;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      12% { transform: scale(1.13); }
+      24% { transform: scale(1); }
+      36% { transform: scale(1.08); }
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float-up {
+      from {
+        opacity: 1;
+        transform: translateY(0) rotate(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateY(-100px) rotate(25deg);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="card">
+    <div class="heart" aria-hidden="true">♡</div>
+
+    <h1>A Little Box of Happiness</h1>
+
+    <p class="subtitle">
+      Hey, you! 🌷<br>
+      Whatever kind of day you're having,<br>
+      here's a tiny corner of the internet<br>
+      dedicated to making you smile.
+    </p>
+
+    <button id="happyButton" type="button">
+      ✨ A little happiness
+    </button>
+
+    <section class="message-box"
+             aria-label="Your happy surprise"
+             aria-live="polite">
+      <div id="emoji" aria-hidden="true">🌸</div>
+      <p id="message">
+        Your little surprise is waiting here...
+      </p>
+    </section>
+
+    <p class="hint">
+      Made with a little code and a lot of good wishes ♡
+    </p>
+  </main>
+
+  <script>
+    const surprises = [
+      {
+        emoji: "🌷",
+        text: "Reminder: you don't have to figure everything out today. One little step at a time."
+      },
+      {
+        emoji: "🐼",
+        text: "Breaking news: an extremely qualified panda has officially approved your smile."
+      },
+      {
+        emoji: "☀️",
+        text: "Even cloudy days are allowed to have little moments of sunshine. Hope you find one today."
+      },
+      {
+        emoji: "🦋",
+        text: "Look how far you've come. Give yourself some credit for the little things, too."
+      },
+      {
+        emoji: "🍰",
+        text: "Official scientific report: you deserve a little treat and a few minutes of doing absolutely nothing."
+      },
+      {
+        emoji: "🌻",
+        text: "You bring something unique to this world just by being yourself. Never forget that."
+      },
+      {
+        emoji: "🐸",
+        text: "A tiny frog just hopped into the room to remind you that you're doing great. Ribbit."
+      },
+      {
+        emoji: "✨",
+        text: "Plot twist: something unexpectedly nice could happen today. Stay open to the little joys."
+      },
+      {
+        emoji: "☁️",
+        text: "Permission granted to slow down, breathe, drink some water, and start again whenever you're ready."
+      },
+      {
+        emoji: "🌈",
+        text: "You don't need a perfect day to find one perfect little moment."
+      },
+      {
+        emoji: "🐣",
+        text: "If today feels difficult, that's okay. You are allowed to have off days and still be doing your best."
+      },
+      {
+        emoji: "💗",
+        text: "Someone spent time making this tiny website with the hope that it might make your day a little brighter."
+      }
+    ];
+
+    const button = document.getElementById("happyButton");
+    const message = document.getElementById("message");
+    const emoji = document.getElementById("emoji");
+
+    let previousIndex = -1;
+
+    function showSurprise() {
+      let index;
+
+      // Avoid showing the same surprise twice in a row.
+      do {
+        index = Math.floor(Math.random() * surprises.length);
+      } while (index === previousIndex);
+
+      previousIndex = index;
+
+      const surprise = surprises[index];
+
+      emoji.textContent = surprise.emoji;
+      message.textContent = surprise.text;
+
+      createSparkles();
+    }
+
+    function createSparkles() {
+      const symbols = ["✨", "♡", "🌸", "✦"];
+
+      for (let i = 0; i < 7; i++) {
+        const sparkle = document.createElement("span");
+
+        sparkle.className = "sparkle";
+        sparkle.textContent =
+          symbols[Math.floor(Math.random() * symbols.length)];
+
+        sparkle.style.left = Math.random() * 90 + 5 + "vw";
+        sparkle.style.top = (45 + Math.random() * 30) + "vh";
+        sparkle.style.fontSize = (14 + Math.random() * 18) + "px";
+
+        document.body.appendChild(sparkle);
+
+        sparkle.addEventListener("animationend", () => {
+          sparkle.remove();
+        });
+      }
+    }
+
+    button.addEventListener("click", showSurprise);
+  </script>
+</body>
+</html>
